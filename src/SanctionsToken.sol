@@ -32,10 +32,7 @@ contract SanctionsToken is ERC20 {
         blacklist[_addr] = false;
     }
 
-    function transfer(
-        address to,
-        uint256 amount
-    ) public override returns (bool) {
+    function transfer(address to, uint256 amount) public override returns (bool) {
         require(!blacklist[msg.sender], "sender is blacklisted");
         require(!blacklist[to], "recipient is blacklisted");
         address owner = _msgSender();
@@ -43,11 +40,7 @@ contract SanctionsToken is ERC20 {
         return true;
     }
 
-    function transferFrom(
-        address from,
-        address to,
-        uint256 amount
-    ) public override returns (bool) {
+    function transferFrom(address from, address to, uint256 amount) public override returns (bool) {
         require(!blacklist[from], "sender is blacklisted");
         require(!blacklist[to], "recipient is blacklisted");
         address spender = _msgSender();

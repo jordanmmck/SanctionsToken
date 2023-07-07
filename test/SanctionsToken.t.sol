@@ -54,12 +54,12 @@ contract SanctionsTokenTest is Test {
 
     function testTransfer() public {
         vm.prank(alice);
-        sanctionsToken.transfer(bob, .5e18);
+        sanctionsToken.transfer(bob, 0.5e18);
 
-        uint aliceBalance = sanctionsToken.balanceOf(alice);
-        assertEq(aliceBalance, 1e18 - .5e18);
-        uint bobBalance = sanctionsToken.balanceOf(bob);
-        assertEq(bobBalance, .5e18);
+        uint256 aliceBalance = sanctionsToken.balanceOf(alice);
+        assertEq(aliceBalance, 1e18 - 0.5e18);
+        uint256 bobBalance = sanctionsToken.balanceOf(bob);
+        assertEq(bobBalance, 0.5e18);
     }
 
     function testTransferToBlacklist() public {
@@ -68,7 +68,7 @@ contract SanctionsTokenTest is Test {
 
         vm.expectRevert();
         vm.prank(alice);
-        sanctionsToken.transfer(bob, .5e18);
+        sanctionsToken.transfer(bob, 0.5e18);
     }
 
     function testTransferFromBlacklist() public {
@@ -77,6 +77,6 @@ contract SanctionsTokenTest is Test {
 
         vm.expectRevert();
         vm.prank(alice);
-        sanctionsToken.transfer(bob, .5e18);
+        sanctionsToken.transfer(bob, 0.5e18);
     }
 }
