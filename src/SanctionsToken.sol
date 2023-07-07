@@ -3,6 +3,10 @@ pragma solidity ^0.8.13;
 
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
+/// @title A token with sanctions
+/// @author Jordan McKinney
+/// @notice ERC20 token with a blacklist of addresses that cannot send or receive tokens
+/// @dev only admin can add or remove addresses from the blacklist
 contract SanctionsToken is ERC20 {
     mapping(address => bool) public blacklist;
     address public admin;
