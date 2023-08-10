@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.13;
+pragma solidity ^0.8.18;
 
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
@@ -9,11 +9,10 @@ import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 /// @dev only admin can add or remove addresses from the blacklist
 contract SanctionsToken is ERC20 {
     mapping(address => bool) public blacklist;
-    address public admin;
+    address public immutable admin;
 
     constructor() ERC20("SanctionsToken", "STX") {
         admin = msg.sender;
-        this; // do i need this?
     }
 
     // not sure how to set balances to non-zero without this f'n...
